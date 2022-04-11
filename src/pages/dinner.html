@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset=utf-8>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="/src/style.css"></style>
+	<title>Lafferty Wedding</title>
+	<script type="text/javascript">
+		function HandleNext() {
+			location.href = "/src/pages/finish.html";
+		}
+	</script>
+</head>
+<body>
+	<header>
+		<p>I'm the header</p>
+	</header>
+	<main>
+		<p>Dinner Preferences</p>
+		<p>All kids under the age of 12 will be given a chicken nuggets kids meal.</p>
+		<p>What does John Doe want for dinner?</p>
+		<label><input type="radio" value="Steak" name="food" /> Steak</label>
+		<p>with peppercorn sauce, garlic mashed potatoes & broccolini</p>
+		<label><input type="radio" value="Fish" name="food" /> Fish</label>
+		<p>with cashew-annatto salsa, cucumber honeydew salad & saffron rice</p>
+		<label><input type="radio" value="Vegetable" name="food" /> Chicken Schwarma</label>
+		<p>Baked tofu shawarma, cauliflower tabbouleh, tzatziki sauce, feta, olives, pepperoncini’s, cilantro</p>
+		<p>Choose an option. If you’re indecisive... We’d recommended the steak (It’s pretty good)</p>
+
+		<p>Have any food allergies or dietary restrictions? (optional)</p>
+		<textarea placeholder="peanut allergy, gluten intolerance, vegan etc."></textarea>
+		<button>⬅ Previous</button>
+		<button onclick="HandleNext()">Next: Confirm Details</button>
+	</main>
+	<footer>
+		<p>I'm the footer</p>
+	</footer>
+</body>
+</html>
