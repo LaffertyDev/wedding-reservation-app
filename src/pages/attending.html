@@ -3,6 +3,7 @@
 <head>
 	<meta charset=utf-8>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="icon" href="data:,">
 	<title>Lafferty Wedding</title>
 	<link rel="stylesheet" href="/src/style.css"></style>
 	<script type="text/javascript">
@@ -10,39 +11,44 @@
 			location.href = "/src/pages/dinner.html"
 		}
 	</script>
+	<script type="module" src="/src/components/attending_comp.mjs" async></script>
 </head>
 <body>
 	<header>
 		<p>I'm the header</p>
 	</header>
 	<main>
-		<p>Who is Attending?</p>
-		<p>We have reserved 2 seats in your honor.</p>
-		<ul>
-			<li>
-				<span>John Doe</span>
-				<label><input type="radio" name="attending" /> Yes</label>
-				<label><input type="radio" name="attending" /> No</label>
-			</li>
-			<li>
-				<span>Jane Doe</span>
-				<label><input type="radio" name="attending" /> Yes</label>
-				<label><input type="radio" name="attending" /> No</label>
-			</li>
-			<li>
-				<p>Bringing a Guest?</p>
-				<input type="text" placeholder="First and Last Name" value="John's Optional Guest" />
-				<label><input type="radio" name="attending" /> Yes</label>
-				<label><input type="radio" name="attending" /> No</label>
-			</li>
-		</ul>
-		<p>add a note to Emily and I (optional)</p>
-		<textarea placeholder="Any notes for us? 😊"></textarea>
-		<p>
-			You didn’t RSVP to the RSVP!<br/>Respond ‘Yes’ or ‘No’ for everyone in your group.
-		</p>
-		<button>⬅ Previous</button>
-		<button onclick="HandleNext()">Next: Dinner Choice</button>
+		<section class="section">
+			<div class="container">
+				<p>Who is Attending?</p>
+				<p>We have reserved 2 seats in your honor.</p>
+				<ul>
+					<li>
+						<span>John Doe</span>
+						<label><input class="radio" type="radio" name="attending" /> Yes</label>
+						<label><input class="radio"type="radio" name="attending" /> No</label>
+					</li>
+					<li>
+						<span>Jane Doe</span>
+						<label><input class="radio" type="radio" name="attending" /> Yes</label>
+						<label><input class="radio" type="radio" name="attending" /> No</label>
+					</li>
+					<li>
+						<p>Bringing a Guest?</p>
+						<input type="text" placeholder="First and Last Name" value="John's Guest" />
+						<label><input class="radio" type="radio" name="attending" /> Yes</label>
+						<label><input class="radio" type="radio" name="attending" /> No</label>
+					</li>
+				</ul>
+				<p>add a note to Emily and I (optional)</p>
+				<textarea id="group_note" placeholder="Any notes for us? 😊"></textarea>
+				<p>
+					You didn’t RSVP to the RSVP!<br/>Respond ‘Yes’ or ‘No’ for everyone in your group.
+				</p>
+				<button class="button">⬅ Previous</button>
+				<button class="button is-primary" onclick="HandleNext()">Next: Dinner Choice</button>
+			</div>
+		</section>
 	</main>
 	<footer>
 		<p>I'm the footer</p>
