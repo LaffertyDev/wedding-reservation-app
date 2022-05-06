@@ -11,18 +11,34 @@
 </script>
 <body>
 	<header>
-		<p>I'm the header</p>
 	</header>
 	<main>
-		<p>Let's find your reservation!</p>
-		<p>Enter the first and last name of one member of your party below. You'll be able to RSVP for your entire group on the next page.</p>
-		<p>Full Name</p>
-		<input id="name_search" type="text" placeholder="First and Last Name" />
-		<p id="error"></p>
-		<button type="submit" placeholder="First and Last Name" id="find_invitation">Find my Invitation</button>
+		<section class="section">
+			<h1 class="title is-1 is-spaced has-text-centered">RSVP</h1>
+			<p class="subtitle has-text-centered">Nate & Emily | August 27th, 2022</p>
+			<p class="subtitle has-text-centered">Respond by June 31st, 2022.</p>
+			<div class="container is-max-desktop emily-width">
+				<div class="box">
+					<h2 class="title is-4 has-text-centered is-uppercase">find your reservation!</h2>
+					<p class="content has-text-centered">Enter the first and last name of one member of your party below. You'll be able to RSVP for your entire group on the next page.</p>
+					<div class="field">
+						<label class="label">Full Name</label>
+						<div class="control">
+							<input class="input" id="name_search" type="text" placeholder="First and Last Name" />
+						</div>
+						<p class="help is-danger" id="error"></p>
+					</div>
+				</div>
+				<div class="field" style="margin-top: 32px"> <!-- Could fix this by building Bulma from SASS and changing box padding variable -->
+					<button class="button is-primary is-fullwidth" type="submit" placeholder="First and Last Name" id="find_invitation">
+						Find my Invitation
+					</button>
+				</div>
+			</div>
+		</section>
 	</main>
 	<footer>
-		<p>I'm the footer</p>
+
 	</footer>
 </body>
 </html>

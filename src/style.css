@@ -1,5 +1,29 @@
 @import "https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css";
 
+/* https://fonts.google.com/specimen/IM+Fell+Great+Primer+SC#standard-styles */ 
+@import url('https://fonts.googleapis.com/css2?family=IM+Fell+Great+Primer+SC&display=swap');
+/* https://fonts.google.com/specimen/Poppins */
+@import url('https://fonts.googleapis.com/css2?family=IM+Fell+Great+Primer+SC&display=swap');
+
 textarea {
 	display: block;
+}
+
+body {
+	background-image:  url("/src/static/rsvp_background.png");
+	background-size: cover;
+	height:  100vh;
+}
+
+.title {
+	font-family: 'IM Fell Great Primer SC', serif;
+}
+
+.content, .subtitle {
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Could get rid of this by building bulma from sass and changing the column max-width property */
+.emily-width {
+	max-width: 500px;
 }
