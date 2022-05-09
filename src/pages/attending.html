@@ -6,52 +6,39 @@
 	<link rel="icon" href="data:,">
 	<title>Lafferty Wedding</title>
 	<link rel="stylesheet" href="/src/style.css"></style>
-	<script type="text/javascript">
-		function HandleNext() {
-			location.href = "/src/pages/dinner.html"
-		}
-	</script>
-	<script type="module" src="/src/components/attending_comp.mjs" async></script>
+	<script type="module" src="/src/components/attending_controller.mjs" async></script>
 </head>
 <body>
 	<header>
-		<p>I'm the header</p>
+
 	</header>
 	<main>
+		<!-- TODO: Can update the framework's padding to improve spacing -->
+		<section class="section" id="wedding-header" style="padding-bottom: 0px"></section>
 		<section class="section">
-			<div class="container">
-				<p>Who is Attending?</p>
-				<p>We have reserved 2 seats in your honor.</p>
-				<ul>
-					<li>
-						<span>John Doe</span>
-						<label><input class="radio" type="radio" name="attending" /> Yes</label>
-						<label><input class="radio"type="radio" name="attending" /> No</label>
-					</li>
-					<li>
-						<span>Jane Doe</span>
-						<label><input class="radio" type="radio" name="attending" /> Yes</label>
-						<label><input class="radio" type="radio" name="attending" /> No</label>
-					</li>
-					<li>
-						<p>Bringing a Guest?</p>
-						<input type="text" placeholder="First and Last Name" value="John's Guest" />
-						<label><input class="radio" type="radio" name="attending" /> Yes</label>
-						<label><input class="radio" type="radio" name="attending" /> No</label>
-					</li>
-				</ul>
-				<p>add a note to Emily and I (optional)</p>
-				<textarea id="group_note" placeholder="Any notes for us? 😊"></textarea>
-				<p>
-					You didn’t RSVP to the RSVP!<br/>Respond ‘Yes’ or ‘No’ for everyone in your group.
-				</p>
-				<button class="button">⬅ Previous</button>
-				<button class="button is-primary" onclick="HandleNext()">Next: Dinner Choice</button>
+			<div class="container is-max-desktop emily-width">
+				<div class="box">
+					<h2 class="title is-4 has-text-centered is-uppercase">Who is Attending?</h2>
+					<div id="guest_list" class="field">
+					</div>
+					<div id="not_attending_info" class="field is-hidden">
+						<p class="label content mt-6">add a short note to Emily and I (optional)</p>
+						<textarea id="group_note" class="textarea" maxlength="1024" placeholder="Any notes for us? 😊"></textarea>
+					</div>
+					<p class="help is-danger" id="error">
+					</p>
+				</div>
+				<div class="field" style="margin-top: 32px"> <!-- TODO: Could fix this by building Bulma from SASS and changing box padding variable -->
+					<button class="button is-text" id="previous">⬅ Previous</button>
+					<button class="button is-primary is-pulled-right" type="submit" placeholder="First and Last Name" id="next">
+						Next: Dinner Choice
+					</button>
+				</div>
 			</div>
 		</section>
 	</main>
 	<footer>
-		<p>I'm the footer</p>
+
 	</footer>
 </body>
 </html>
