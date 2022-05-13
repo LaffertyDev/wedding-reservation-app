@@ -13,29 +13,31 @@
 
 	</header>
 	<main>
-		<!-- TODO: Can update the framework's padding to improve spacing -->
-		<section class="section" id="wedding-header" style="padding-bottom: 0px"></section>
-		<section class="section">
-			<div class="container is-max-desktop emily-width">
-				<div class="box">
-					<h2 class="title is-4 has-text-centered is-uppercase">Who is Attending?</h2>
-					<div id="guest_list" class="field">
+		<form id="form">
+			<!-- TODO: Can update the framework's padding to improve spacing -->
+			<section class="section" id="wedding-header" style="padding-bottom: 0px"></section>
+			<section class="section">
+				<div class="container is-max-desktop emily-width">
+					<div class="box">
+						<h2 class="title is-4 has-text-centered is-uppercase">Who is Attending?</h2>
+						<div id="guest_list" class="field">
+						</div>
+						<div id="not_attending_info" class="field is-hidden">
+							<p class="label content mt-6">add a short note to Emily and I (optional)</p>
+							<textarea id="group_note" class="textarea" maxlength="1024" placeholder="Any notes for us? 😊"></textarea>
+						</div>
+						<p class="help is-danger" id="error">
+						</p>
 					</div>
-					<div id="not_attending_info" class="field is-hidden">
-						<p class="label content mt-6">add a short note to Emily and I (optional)</p>
-						<textarea id="group_note" class="textarea" maxlength="1024" placeholder="Any notes for us? 😊"></textarea>
+					<div class="field" style="margin-top: 32px"> <!-- TODO: Could fix this by building Bulma from SASS and changing box padding variable -->
+						<button type="button" class="button" id="previous">Previous</button>
+						<button type="submit" class="button is-primary is-pulled-right" type="submit" placeholder="First and Last Name" id="next">
+							Next: Dinner Choice
+						</button>
 					</div>
-					<p class="help is-danger" id="error">
-					</p>
 				</div>
-				<div class="field" style="margin-top: 32px"> <!-- TODO: Could fix this by building Bulma from SASS and changing box padding variable -->
-					<button class="button" id="previous">Previous</button>
-					<button class="button is-primary is-pulled-right" type="submit" placeholder="First and Last Name" id="next">
-						Next: Dinner Choice
-					</button>
-				</div>
-			</div>
-		</section>
+			</section>
+		</form>
 	</main>
 	<footer>
 

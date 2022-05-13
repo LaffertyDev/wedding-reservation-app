@@ -24,9 +24,12 @@ class AttendingController {
 		this.reservation.plus_one.Name = e.target.value;
 	}
 
-	async HandleSubmit() {
+	async HandleSubmit(e) {
+		e.preventDefault();
 		if (this.reservation.guests.some(g => g.Attending == null) || (this.reservation.guests.some(g => g.Attending === true) && this.reservation.can_add_plus_one && this.reservation.plus_one.Attending == null)) {
 			document.getElementById("error").innerHTML = "You didn’t RSVP to the RSVP!<br/>Respond ‘Yes’ or ‘No’ for everyone in your group.";
+		} else if (this.reservation.can_add_plus_one && this.reservation.plus_one.Attending && this.reservation.plus_one.Name == "") {
+			document.getElementById("error").innerHTML = "Your plus one needs a name.";
 		} else {
 			document.getElementById("error").innerHTML = "";
 			localStorage.setItem('reservation', JSON.stringify(this.reservation));
@@ -139,8 +142,8 @@ class AttendingController {
 	}
 
 	async init() {
+		document.getElementById("form").addEventListener("submit", this.HandleSubmit.bind(this));
 		document.getElementById("previous").addEventListener("click", this.HandlePrevious.bind(this));
-		document.getElementById("next").addEventListener("click", this.HandleSubmit.bind(this));
 		document.getElementById("group_note").addEventListener("change", this.HandleNoteToCoupleText.bind(this));
 		this.LoadData();
 	}

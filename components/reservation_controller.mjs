@@ -2,7 +2,8 @@ import {html, render} from 'https://unpkg.com/lit-html?module';
 import {RSVPBackend} from '/components/backend.mjs';
 import {WeddingHeader} from '/components/wedding_header.mjs';
 
-async function HandleFindInvitation() {
+async function HandleFindInvitation(e) {
+	e.preventDefault();
 	const name_search_input = document.getElementById("name_search");
 	if (name_search_input.value == "") {
 		document.getElementById("error").innerHTML = "Who are you? Enter your name.";
@@ -27,7 +28,7 @@ function HandleTextInput() {
 }
 
 function init() {
-	document.getElementById("find_invitation").addEventListener('click', HandleFindInvitation);
+	document.getElementById("form").addEventListener("submit", HandleFindInvitation);
 	document.getElementById("name_search").addEventListener('click', HandleTextInput);
 	localStorage.removeItem('reservation');
 }

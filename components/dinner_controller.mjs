@@ -12,7 +12,8 @@ class DinnerController {
 		}
 	}
 
-	async HandleNext() {
+	async HandleNext(e) {
+		e.preventDefault();
 		if (this.GetCurrentGuest().Dinner === null) {
 			this.error = "Choose an option. If you’re indecisive... We’d recommended the steak (It’s pretty good)";
 			this.Render();
@@ -127,7 +128,7 @@ class DinnerController {
 	}
 
 	init() {
-		document.getElementById("next").addEventListener("click", this.HandleNext.bind(this));
+		document.getElementById("form").addEventListener("submit", this.HandleNext.bind(this));
 		document.getElementById("previous").addEventListener("click", this.HandlePrevious.bind(this));
 		document.getElementById("steak").addEventListener("click", this.HandleDinnerSelectionChange.bind(this));
 		document.getElementById("veg").addEventListener("click", this.HandleDinnerSelectionChange.bind(this));

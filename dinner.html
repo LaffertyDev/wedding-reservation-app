@@ -13,35 +13,37 @@
 
 	</header>
 	<main>
-		<!-- TODO: Can update the framework's padding to improve spacing -->
-		<section class="section" id="wedding-header" style="padding-bottom: 0px"></section>
-		<section class="section">
-			<div class="container is-max-desktop emily-width">
-				<div class="box">
-					<h2 class="title is-4 has-text-centered is-uppercase">Dinner Preferences</h2>
-					<p class="content has-text-centered">All kids under the age of 12 will be given a chicken nuggets kids meal.</p>
-					<!-- Try to align the text to be next to the radio button -->
-					<p class="content">What does <strong id="guest_name">John Doe</strong> want for dinner?</p>
-					<label class="radio"><input class="radio" id="steak" type="radio" value="Steak" name="food" /> Steak</label>
-					<p class="content"><em>with peppercorn sauce, garlic mashed potatoes & broccolini</em></p>
-					<label class="radio"><input class="radio" id="fish" type="radio" value="Fish" name="food" /> Fish</label>
-					<p class="content"><em>with cashew-annatto salsa, cucumber honeydew salad & saffron rice</em></p>
-					<label class="radio"><input class="radio" id="veg" type="radio" value="Vegetable" name="food" /> Veggie Schwarma</label>
-					<p class="content"><em>Baked tofu shawarma, cauliflower tabbouleh, tzatziki sauce, feta, olives, pepperoncini’s, cilantro</em></p>
-					<p class="help is-danger" id="error"></p>
+		<form id="form">
+			<!-- TODO: Can update the framework's padding to improve spacing -->
+			<section class="section" id="wedding-header" style="padding-bottom: 0px"></section>
+			<section class="section">
+				<div class="container is-max-desktop emily-width">
+					<div class="box">
+						<h2 class="title is-4 has-text-centered is-uppercase">Dinner Preferences</h2>
+						<p class="content has-text-centered">All kids under the age of 12 will be given a chicken nuggets kids meal.</p>
+						<!-- Try to align the text to be next to the radio button -->
+						<p class="content">What does <strong id="guest_name">John Doe</strong> want for dinner?</p>
+						<label class="radio"><input class="radio" id="steak" type="radio" value="Steak" name="food" /> Steak</label>
+						<p class="content"><em>with peppercorn sauce, garlic mashed potatoes & broccolini</em></p>
+						<label class="radio"><input class="radio" id="fish" type="radio" value="Fish" name="food" /> Fish</label>
+						<p class="content"><em>with cashew-annatto salsa, cucumber honeydew salad & saffron rice</em></p>
+						<label class="radio"><input class="radio" id="veg" type="radio" value="Vegetable" name="food" /> Veggie Schwarma</label>
+						<p class="content"><em>Baked tofu shawarma, cauliflower tabbouleh, tzatziki sauce, feta, olives, pepperoncini’s, cilantro</em></p>
+						<p class="help is-danger" id="error"></p>
 
-					<!-- Fix spacing -->
-					<p class="content">Have any food allergies or dietary restrictions? (optional)</p>
-					<textarea class="textarea" id="allergy_text" placeholder="peanut allergy, gluten intolerance, vegan etc."></textarea>
+						<!-- Fix spacing -->
+						<p class="content">Have any food allergies or dietary restrictions? (optional)</p>
+						<textarea class="textarea" id="allergy_text" placeholder="peanut allergy, gluten intolerance, vegan etc."></textarea>
+					</div>
+					<div class="field" style="margin-top: 32px"> <!-- TODO: Could fix this by building Bulma from SASS and changing box padding variable -->
+						<button type="button" class="button is-text" id="previous">⬅ Previous</button>
+						<button type="submit" class="button is-primary is-pulled-right" type="submit" placeholder="First and Last Name" id="next">
+							Next: Confirm Details
+						</button>
+					</div>
 				</div>
-				<div class="field" style="margin-top: 32px"> <!-- TODO: Could fix this by building Bulma from SASS and changing box padding variable -->
-					<button class="button is-text" id="previous">⬅ Previous</button>
-					<button class="button is-primary is-pulled-right" type="submit" placeholder="First and Last Name" id="next">
-						Next: Confirm Details
-					</button>
-				</div>
-			</div>
-		</section>
+			</section>
+		</form>
 	</main>
 	<footer>
 

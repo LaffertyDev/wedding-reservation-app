@@ -10,7 +10,7 @@ textarea {
 }
 
 body {
-	background-image:  url("/src/static/rsvp_background.png");
+	background-image:  url("/static/rsvp_background.png");
 	background-size: cover;
 	min-height:  100vh;
 	max-height: 100%;
