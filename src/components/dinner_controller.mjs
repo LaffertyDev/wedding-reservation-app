@@ -20,9 +20,17 @@ class DinnerController {
 		}
 
 		if (this.GetNextGuest() === null) {
+			localStorage.setItem('reservation', JSON.stringify(this.reservation));
 			const backend = new RSVPBackend();
 			document.getElementById("next").classList.add("is-loading");
-			await backend.SaveReservation(this.reservation);
+			try {
+				await backend.SaveReservation(this.reservation);
+			} catch(e) {
+				document.getElementById("next").classList.remove("is-loading");
+				this.error = "There was a problem on the backend. Please try again";
+				this.Render();
+				return;
+			}
 			document.getElementById("next").classList.remove("is-loading");
 			location.href = "/src/pages/finish.html";
 		} else {

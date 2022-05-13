@@ -34,7 +34,13 @@ class AttendingController {
 			if (this.reservation.guests.every(g => g.Attending === false)) {
 				const backend = new RSVPBackend();
 				document.getElementById("next").classList.add("is-loading");
-				await backend.SaveReservation(this.reservation);
+				try {
+					await backend.SaveReservation(this.reservation);
+				} catch(e) {
+					document.getElementById("next").classList.remove("is-loading");
+					alert("There was a problem on the backend. Please try again.");
+					return;
+				}
 				document.getElementById("next").classList.remove("is-loading");
 				window.location = "/src/pages/finish.html";
 			} else {
