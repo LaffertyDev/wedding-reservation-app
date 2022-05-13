@@ -1,140 +1,37 @@
-export class RSVPBackend {
-	async SearchForReservation() {
-		const chanceError = Math.floor(Math.random() * 100);
+import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm'
 
-		if (Math.floor(Math.random() * 20) <= 1) { // 5% chance of error
+export class RSVPBackend {
+	constructor() {
+		this.supabase = createClient('https://pvlfpzfbdmgegmvaqhsc.supabase.co', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InB2bGZwemZiZG1nZWdtdmFxaHNjIiwicm9sZSI6ImFub24iLCJpYXQiOjE2NTI0MDc5NDIsImV4cCI6MTk2Nzk4Mzk0Mn0.lGYQHdB3qmP7aoPpL21wW9x6gy-M5E3BhAXMS3uDPF4');
+	}
+	async SearchForReservation(passcode) {
+		let { data: reservation, error } = await this.supabase
+			.from('reservation')
+			.select('*')
+			.eq("passcode", passcode);
+
+		console.log(reservation, error);
+		if (error) {
+			return Promise.reject("I had a database failure. Please try again later.");
+		}
+
+		if (reservation.length === 0) {
 			return Promise.reject("No name found. Enter your name again or try another name from your group.");
 		}
 
-		if (Math.floor(Math.random()) == 0) {
-			return Promise.resolve({
-				ReservationIdentifier: "2BBDE96A-51A3-4B55-93A2-BD3F02F1F560",
-				CanAddPlusOne: true,
-				Note: "Lorem Ipsum",
-				Guests: [
-					{
-						Name: "John Doe",
-						Attending: null,
-						Dinner: "Steak",
-						RestrictionsNote: null
-					},
-					{
-						Name: "Jane Doe",
-						Attending: null,
-						Dinner: "Fish",
-						RestrictionsNote: null
-					},
-					{
-						Name: "Jack Doe",
-						Attending: null,
-						Dinner: null,
-						RestrictionsNote: null
-					},
-					{
-						Name: "Yozeph Yrgovich",
-						Attending: null,
-						Dinner: null,
-						RestrictionsNote: null
-					}
-				],
-				PlusOne: {
-					Name: "",
-					Attending: null,
-					Dinner: null,
-					RestrictionsNote: null
-				}
-			});
-		}
-
-		return Promise.resolve({
-			ReservationIdentifier: "2BBDE96A-51A3-4B55-93A2-BD3F02F1F560",
-			CanAddPlusOne: true,
-			Note: "",
-			Guests: [
-				{
-					Name: "John Doe",
-					Attending: true,
-					Dinner: "Steak",
-					RestrictionsNote: null
-				},
-				{
-					Name: "Jane Doe",
-					Attending: null,
-					Dinner: "Fish",
-					RestrictionsNote: null
-				},
-				{
-					Name: "Jack Doe",
-					Attending: null,
-					Dinner: null,
-					RestrictionsNote: null
-				},
-				{
-					Name: "Yozeph Yrgovich",
-					Attending: null,
-					Dinner: null,
-					RestrictionsNote: null
-				}
-			],
-			PlusOne: {
-				Name: "",
-				Attending: null,
-				Dinner: null,
-				RestrictionsNote: null
-			}
-		});
-	}
-
-	async LoadReservation(reservationid) {
-		if (reservationid == "") {
-			return Promise.reject("No reservation id given");
-		}
-		
-		if (Math.floor(Math.random() * 20) <= 1) { // 5% chance of error
-			return Promise.reject("No reservation found.");
-		}
-
-		return Promise.resolve({
-			ReservationIdentifier: "2BBDE96A-51A3-4B55-93A2-BD3F02F1F560",
-			CanAddPlusOne: true,
-			Note: "",
-			Guests: [
-				{
-					Name: "John Doe",
-					Attending: true,
-					Dinner: "Steak",
-					RestrictionsNote: null
-				},
-				{
-					Name: "Jane Doe",
-					Attending: null,
-					Dinner: "Fish",
-					RestrictionsNote: null
-				},
-				{
-					Name: "Jack Doe",
-					Attending: null,
-					Dinner: null,
-					RestrictionsNote: null
-				},
-				{
-					Name: "Yozeph Yrgovich",
-					Attending: null,
-					Dinner: null,
-					RestrictionsNote: null
-				}
-			],
-			PlusOne: {
-				Name: "",
-				Attending: null,
-				Dinner: null,
-				RestrictionsNote: null
-			}
-		});
+		return Promise.resolve(reservation[0]);
 	}
 
 	async SaveReservation(reservation) {
-		await new Promise(r => setTimeout(r, 2000));
-		console.log("saved reservation", reservation);
+		const { data, error } = await this.supabase
+			.from('reservation')
+			.update(reservation)
+			.eq('passcode', reservation.passcode);
+
+		if (error) {
+			return Promise.reject("There was a big problem updating things");
+		}
+
+		return Promise.resolve(data);
 	}
 }

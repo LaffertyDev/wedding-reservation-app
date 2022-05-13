@@ -12,7 +12,7 @@ async function HandleFindInvitation() {
 	const rsvpBackend = new RSVPBackend();
 	
 	try {
-		const reservation = await rsvpBackend.SearchForReservation();
+		const reservation = await rsvpBackend.SearchForReservation(name_search_input.value);
 		localStorage.setItem('reservation', JSON.stringify(reservation));
 		location.href = `/src/pages/attending.html`;
 	}

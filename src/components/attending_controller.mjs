@@ -2,7 +2,6 @@ import {html, render} from 'https://unpkg.com/lit-html?module';
 import {RSVPBackend} from '/src/components/backend.mjs';
 import {WeddingHeader} from '/src/components/wedding_header.mjs';
 
-
 class AttendingController {
 	HandlePrevious() {
 		location.href = "/src/pages/reservation.html";
@@ -11,32 +10,41 @@ class AttendingController {
 	HandleRadioSelect(e) {
 		document.getElementById("error").innerHTML = "";
 		if (e.target.name === "plus_one_rsvp") {
-			this.reservation.PlusOne.Attending = e.target.value === "yes";
+			this.reservation.plus_one.Attending = e.target.value === "yes";
 		} else {
 			const person = e.target.value.substr(0, e.target.value.indexOf('_'));
 			const attending = e.target.value.substr(e.target.value.indexOf('_') + 1, e.target.value.length) == "yes";
-			this.reservation.Guests.find(x => x.Name == person).Attending = attending;
+			this.reservation.guests.find(x => x.Name == person).Attending = attending;
 		}
 
 		this.Render();
 	}
 
 	HandlePlusOneNameChange(e) {
-		this.reservation.PlusOne.Name = e.target.value;
+		this.reservation.plus_one.Name = e.target.value;
 	}
 
 	async HandleSubmit() {
-		if (this.reservation.Guests.some(g => g.Attending == null) || (this.reservation.CanAddPlusOne && this.reservation.PlusOne.Attending == null)) {
+		if (this.reservation.guests.some(g => g.Attending == null) || (this.reservation.guests.some(g => g.Attending === true) && this.reservation.can_add_plus_one && this.reservation.plus_one.Attending == null)) {
 			document.getElementById("error").innerHTML = "You didn’t RSVP to the RSVP!<br/>Respond ‘Yes’ or ‘No’ for everyone in your group.";
 		} else {
 			document.getElementById("error").innerHTML = "";
 			localStorage.setItem('reservation', JSON.stringify(this.reservation));
-			window.location = "/src/pages/dinner.html";
+
+			if (this.reservation.guests.every(g => g.Attending === false)) {
+				const backend = new RSVPBackend();
+				document.getElementById("next").classList.add("is-loading");
+				await backend.SaveReservation(this.reservation);
+				document.getElementById("next").classList.remove("is-loading");
+				window.location = "/src/pages/finish.html";
+			} else {
+				window.location = "/src/pages/dinner.html";
+			}
 		}
 	}
 
 	async HandleNoteToCoupleText(e) {
-		this.reservation.Note = e.target.value;
+		this.reservation.not_attending_note = e.target.value;
 	}
 
 	Render() {
@@ -75,9 +83,9 @@ class AttendingController {
 					</div>`;
 
 		let guestsListTemplate = (r) => html`
-			<p class="content has-text-centered mb-6">We have reserved ${Math.max(2, r.Guests.length)} seats in your honor.</p>
-			${r.Guests.map(g => html`${guestTemplate(g)}`)}
-			${this.reservation.CanAddPlusOne ? html`${plusOneTemplate(this.reservation.PlusOne)}` : ''}
+			<p class="content has-text-centered mb-6">We have reserved ${Math.max(2, r.guests.length)} seats in your honor.</p>
+			${r.guests.map(g => html`${guestTemplate(g)}`)}
+			${this.reservation.can_add_plus_one ? html`${plusOneTemplate(this.reservation.plus_one)}` : ''}
 		`;
 
 		render(guestsListTemplate(this.reservation), document.getElementById("guest_list"));
@@ -92,17 +100,17 @@ class AttendingController {
 			});
 		});
 
-		if (this.reservation.Guests.every(x => x.Attending === false)) {
+		if (this.reservation.guests.every(x => x.Attending === false)) {
 			document.getElementById("not_attending_info").classList.remove("is-hidden");
 			document.getElementById("plus_one_field").classList.add("is-hidden");
-			document.getElementById("next").innerHTML = "Next: RSVP";
+			document.getElementById("next").innerHTML = "Submit RSVP";
 		} else {
 			document.getElementById("not_attending_info").classList.add("is-hidden");
 			document.getElementById("plus_one_field").classList.remove("is-hidden");
 			document.getElementById("next").innerHTML = "Next: Dinner Choice";
 		}
 
-		if (this.reservation.PlusOne.Attending === false) {
+		if (this.reservation.plus_one.Attending === false) {
 			document.getElementById("plus_one_name").classList.add("is-hidden");
 		} else {
 			document.getElementById("plus_one_name").classList.remove("is-hidden");
@@ -113,7 +121,7 @@ class AttendingController {
 		const rsvpBackend = new RSVPBackend();
 		try {
 			this.reservation = JSON.parse(localStorage.getItem('reservation'));
-			this.reservation.PlusOne.Name = this.reservation.Guests[0].Name + "'s plus one";
+			this.reservation.plus_one.Name = this.reservation.guests[0].Name + "'s plus one";
 			this.Render();
 		}
 		catch(e) {

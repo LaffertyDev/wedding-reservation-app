@@ -3,8 +3,9 @@ import {RSVPBackend} from '/src/components/backend.mjs';
 
 class DinnerController {
 	HandlePrevious() {
-		if (this.guest_index > 0) {
-			this.guest_index -= 1;
+		if (this.GetPreviousGuest() !== null) {
+			this.error = "";
+			this.current_guest = this.GetPreviousGuest();
 			this.Render();
 		} else {
 			location.href = "/src/pages/attending.html";
@@ -23,9 +24,9 @@ class DinnerController {
 			document.getElementById("next").classList.add("is-loading");
 			await backend.SaveReservation(this.reservation);
 			document.getElementById("next").classList.remove("is-loading");
-			//location.href = "/src/pages/finish.html";
+			location.href = "/src/pages/finish.html";
 		} else {
-			this.guest_index += 1;
+			this.current_guest = this.GetNextGuest();
 			this.Render();
 		}
 	}
@@ -41,40 +42,45 @@ class DinnerController {
 	}
 
 	GetCurrentGuest() {
-		for (var x = this.guest_index; x < this.reservation.Guests.length; x++) {
-			if (this.reservation.Guests[x].Attending) {
-				return this.reservation.Guests[x];
-			}
+		if (this.current_guest === null) {
+			this.current_guest = this.reservation.guests.find(x => x.Attending);
+			return this.current_guest;
+		} else {
+			return this.current_guest;
 		}
-
-		// no more guests found, what about +1?
-		if (this.reservation.CanAddPlusOne && this.reservation.PlusOne.Attending) {
-			return this.reservation.PlusOne;
-		}
-
-		return null;
 	}
 
 	GetNextGuest() {
 		var current_guest = this.GetCurrentGuest();
-		for (var x = this.guest_index; x < this.reservation.Guests.length; x++) {
-			if (this.reservation.Guests[x].Attending && this.reservation.Guests[x] !== current_guest) {
-				return this.reservation.Guests[x];
+		if (this.reservation.guests.indexOf(current_guest) === -1) {
+			// current guest is the plus one, so there isn't anything available
+			return null;
+		} else {
+			for (var x = this.reservation.guests.indexOf(current_guest) + 1; x < this.reservation.guests.length; x++) {
+				if (this.reservation.guests[x].Attending) {
+					return this.reservation.guests[x];
+				}
 			}
-		}
 
-		// no more guests found, what about +1?
-		if (this.reservation.CanAddPlusOne && this.reservation.PlusOne.Attending && this.reservation.PlusOne != current_guest) {
-			return this.reservation.PlusOne;
-		}
+			// guaranteed the next guest is plus one if its available... 
+			if (this.reservation.can_add_plus_one && this.reservation.plus_one.Attending) {
+				return this.reservation.plus_one;
+			}
 
-		return null;	
+			return null;
+		}
 	}
 
 	GetPreviousGuest() {
-		for (var x = this.guest_index - 1; x >= 0; x--) {
-			if (this.reservation.Guests[x].Attending) {
-				return this.reservation.Guests[x];
+		var current_guest = this.GetCurrentGuest();
+		if (current_guest == this.reservation.plus_one) {
+			// previous guest is the last available guest
+			return this.reservation.guests.slice().reverse().find(x => x.Attending);
+		} else {
+			for (var x = this.reservation.guests.indexOf(current_guest) - 1; x >= 0; x--) {
+				if (this.reservation.guests[x].Attending) {
+					return this.reservation.guests[x];
+				}
 			}
 		}
 
@@ -126,7 +132,7 @@ class DinnerController {
 		}
 
 		this.error = "";
-		this.guest_index = 0;
+		this.current_guest = null;
 		this.Render();
 	}
 }

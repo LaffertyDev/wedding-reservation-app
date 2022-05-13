@@ -24,6 +24,10 @@ body {
     font-family: 'Poppins', sans-serif;
 }
 
+.content em {
+	color:  #777;
+}
+
 /* Could get rid of this by building bulma from sass and changing the column max-width property */
 .emily-width {
 	max-width: 500px;
@@ -36,4 +40,17 @@ body {
 /* https://gist.github.com/jipiboily/cfd8494fe174eb2a7f6202220196492a */
 .radio-buttons-as-buttons input {
     display: none;
+}
+
+.box {
+	padding:  2.5rem;
+}
+
+.is-primary {
+	background-color: #D1C080 !important;
+	color:  #363222 !important;
+}
+
+.is-primary:focus:not(active) {
+	box-shadow:  0 0 0 .125em rgba(128, 101, 39, 0.48) !important;
 }
