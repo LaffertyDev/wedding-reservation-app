@@ -1,10 +1,10 @@
 import {html, render} from 'https://unpkg.com/lit-html?module';
-import {RSVPBackend} from '/src/components/backend.mjs';
-import {WeddingHeader} from '/src/components/wedding_header.mjs';
+import {RSVPBackend} from '/components/backend.mjs';
+import {WeddingHeader} from '/components/wedding_header.mjs';
 
 class AttendingController {
 	HandlePrevious() {
-		location.href = "/src/pages/reservation.html";
+		location.href = "/reservation.html";
 	}
 
 	HandleRadioSelect(e) {
@@ -42,9 +42,9 @@ class AttendingController {
 					return;
 				}
 				document.getElementById("next").classList.remove("is-loading");
-				window.location = "/src/pages/finish.html";
+				window.location = "/finish.html";
 			} else {
-				window.location = "/src/pages/dinner.html";
+				window.location = "/dinner.html";
 			}
 		}
 	}
@@ -133,7 +133,7 @@ class AttendingController {
 		catch(e) {
 			alert("We couldn't find your reservation");
 			console.error(e);
-			//location.href = "/src/pages/reservation.html";
+			//location.href = "/reservation.html";
 			return;
 		}
 	}
