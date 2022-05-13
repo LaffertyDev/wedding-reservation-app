@@ -4,7 +4,7 @@ import {WeddingHeader} from '/components/wedding_header.mjs';
 
 class AttendingController {
 	HandlePrevious() {
-		location.href = "/reservation.html";
+		location.href = "/";
 	}
 
 	HandleRadioSelect(e) {
@@ -133,7 +133,7 @@ class AttendingController {
 		catch(e) {
 			alert("We couldn't find your reservation");
 			console.error(e);
-			//location.href = "/reservation.html";
+			//location.href = "/";
 			return;
 		}
 	}
