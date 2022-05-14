@@ -118,12 +118,6 @@ class AttendingController {
 			document.getElementById("plus_one_field").classList.remove("is-hidden");
 			document.getElementById("next").innerHTML = "Next: Dinner Choice";
 		}
-
-		if (this.reservation.plus_one.Attending === false) {
-			document.getElementById("plus_one_name").classList.add("is-hidden");
-		} else {
-			document.getElementById("plus_one_name").classList.remove("is-hidden");
-		}
 	}
 
 	async LoadData() {
