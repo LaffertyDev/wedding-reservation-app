@@ -1,0 +1,21 @@
+name: Build Frontend
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: ssh deploy
+      uses: easingthemes/ssh-deploy@v2.2.11
+      env:
+        SSH_PRIVATE_KEY: ${{ secrets.SERVER_SSH_KEY }}
+        ARGS: "-rltgoDzvO --delete"
+        SOURCE: "/"
+        REMOTE_HOST: lafferty.dev
+        REMOTE_USER: ${{ secrets.REMOTE_USER }}
+        TARGET: /opt/wedding-reservation-website
