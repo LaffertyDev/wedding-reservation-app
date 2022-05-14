@@ -81,7 +81,7 @@ class AttendingController {
 		let plusOneTemplate = (guest) => html`
 					<div class="level" id="plus_one_field">
 						<div class="control">
-							<input class="input level-left ${guest.Attending === false ? "is-hidden" : ""}" type="text" id="plus_one_name" @change="${plusOneNameChangeHandler}" value="${guest.Name}" placeholder="${guest.Name}" />
+							<input class="input level-left ${guest.Attending === false ? "is-invisible" : ""}" type="text" id="plus_one_name" @change="${plusOneNameChangeHandler}" value="${guest.Name}" placeholder="${guest.Name}" />
 						</div>
 						<div class="level-right">
 							<div class="buttons is-expanded has-addons is-right radio-buttons-as-buttons">

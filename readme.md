@@ -8,6 +8,10 @@ And now here we are!
 
 Deploying is done from a GHA over SSH. Reminder for the future... I configured the SSH key on my laptop. If you need to update it, I need to generate a new key and copy the public key to my webserver's `authorized_keys` file. Then give Github the private key.
 
+The files live under a separate directory from my main server. For ease-of-deployment, I prefixed `rsvp` to the routes... that way I can deploy them separately but still serve the files.
+
+I also needed to change the default mime types allowed by nginx to permit `mjs` files sending as `application/javascript` instead of octet-stream.
+
 ## Frontend
 
 Built using vanilla javascript wherever possible, with a hefty dose of web components.
