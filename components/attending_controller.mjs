@@ -1,10 +1,10 @@
 import {html, render} from 'https://unpkg.com/lit-html?module';
-import {RSVPBackend} from '/components/backend.mjs';
-import {WeddingHeader} from '/components/wedding_header.mjs';
+import {RSVPBackend} from '/rsvp/components/backend.mjs';
+import {WeddingHeader} from '/rsvp/components/wedding_header.mjs';
 
 class AttendingController {
 	HandlePrevious() {
-		location.href = "/";
+		location.href = "/rsvp/";
 	}
 
 	HandleRadioSelect(e) {
@@ -45,9 +45,9 @@ class AttendingController {
 					return;
 				}
 				document.getElementById("next").classList.remove("is-loading");
-				window.location = "/finish.html";
+				window.location = "/rsvp/finish.html";
 			} else {
-				window.location = "/dinner.html";
+				window.location = "/rsvp/dinner.html";
 			}
 		}
 	}

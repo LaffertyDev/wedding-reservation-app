@@ -4,6 +4,10 @@ This home-cooked app serves as how my wedding guests will manage their reservati
 
 And now here we are!
 
+## Deploying
+
+Deploying is done from a GHA over SSH. Reminder for the future... I configured the SSH key on my laptop. If you need to update it, I need to generate a new key and copy the public key to my webserver's `authorized_keys` file. Then give Github the private key.
+
 ## Frontend
 
 Built using vanilla javascript wherever possible, with a hefty dose of web components.

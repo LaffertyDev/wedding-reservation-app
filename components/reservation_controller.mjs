@@ -1,6 +1,6 @@
 import {html, render} from 'https://unpkg.com/lit-html?module';
-import {RSVPBackend} from '/components/backend.mjs';
-import {WeddingHeader} from '/components/wedding_header.mjs';
+import {RSVPBackend} from '/rsvp/components/backend.mjs';
+import {WeddingHeader} from '/rsvp/components/wedding_header.mjs';
 
 async function HandleFindInvitation(e) {
 	e.preventDefault();
@@ -15,7 +15,7 @@ async function HandleFindInvitation(e) {
 	try {
 		const reservation = await rsvpBackend.SearchForReservation(name_search_input.value);
 		localStorage.setItem('reservation', JSON.stringify(reservation));
-		location.href = `/attending.html`;
+		location.href = `/rsvp/attending.html`;
 	}
 	catch(e) {
 		document.getElementById("error").innerHTML = e;

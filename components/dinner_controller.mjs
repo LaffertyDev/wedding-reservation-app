@@ -1,5 +1,5 @@
-import {WeddingHeader} from '/components/wedding_header.mjs';
-import {RSVPBackend} from '/components/backend.mjs';
+import {WeddingHeader} from '/rsvp/components/wedding_header.mjs';
+import {RSVPBackend} from '/rsvp/components/backend.mjs';
 
 class DinnerController {
 	HandlePrevious() {
@@ -8,7 +8,7 @@ class DinnerController {
 			this.current_guest = this.GetPreviousGuest();
 			this.Render();
 		} else {
-			location.href = "/attending.html";
+			location.href = "/rsvp/attending.html";
 		}
 	}
 
@@ -33,7 +33,7 @@ class DinnerController {
 				return;
 			}
 			document.getElementById("next").classList.remove("is-loading");
-			location.href = "/finish.html";
+			location.href = "/rsvp/finish.html";
 		} else {
 			this.current_guest = this.GetNextGuest();
 			this.Render();
