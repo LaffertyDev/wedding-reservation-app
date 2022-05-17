@@ -16,7 +16,7 @@ export class RSVPBackend {
 		}
 
 		if (reservation.length === 0) {
-			return Promise.reject("No name found. Enter your name again or try another name from your group.");
+			return Promise.reject("No invitation found. Try entering your secret passcode again.");
 		}
 
 		return Promise.resolve(reservation[0]);

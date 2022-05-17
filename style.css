@@ -50,6 +50,14 @@ body {
 	padding:  2.5rem;
 }
 
+@media only screen 
+  and (min-device-width: 375px) 
+  and (max-device-width: 812px) { 
+  	.box {
+  		padding:  1.5rem !important;
+  	}
+}
+
 .is-primary {
 	background-color: #D1C080 !important;
 	color:  #363222 !important;

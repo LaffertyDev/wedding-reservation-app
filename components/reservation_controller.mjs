@@ -6,7 +6,7 @@ async function HandleFindInvitation(e) {
 	e.preventDefault();
 	const passcode_search_input = document.getElementById("passcode_search");
 	if (passcode_search_input.value == "") {
-		document.getElementById("error").innerHTML = "Who are you? Enter your name.";
+		document.getElementById("error").innerHTML = "Who are you? Enter your secret passcode.";
 		passcode_search_input.classList.add("is-danger");
 		return;
 	}
