@@ -68,9 +68,9 @@ class AttendingController {
 		}
 
 		let guestTemplate = (guest) => html`
-					<div class="level">
-						<div class="level-left">${guest.Name}</div>
-						<div class="level-right">
+					<div class="columns is-mobile is-vcentered">
+						<div class="column">${guest.Name}</div>
+						<div class="column">
 							<div class="buttons is-expanded has-addons is-right radio-buttons-as-buttons">
 								<label class="button ${guest.Attending === true ? "is-primary" : ""}"><input type="radio" @click="${rsvpClickHandler}" value="${guest.Name}_yes" name="attending" .checked=${guest.Attending === true} /> Yes</label>
 								<label class="button ${guest.Attending === false ? "is-primary" : ""}"><input type="radio" @click="${rsvpClickHandler}" value="${guest.Name}_no" name="attending" .checked=${guest.Attending === false} /> No</label>
