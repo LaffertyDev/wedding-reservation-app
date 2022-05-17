@@ -92,7 +92,7 @@ class AttendingController {
 					</div>`;
 
 		let guestsListTemplate = (r) => html`
-			<p class="content has-text-centered mb-6">We have reserved ${Math.max(2, r.guests.length)} seats in your honor.</p>
+			<p class="content has-text-centered mb-6">We have reserved ${r.guests.length + (r.can_add_plus_one ? 1 : 0)} seat${(r.guests.length + (r.can_add_plus_one ? 1 : 0)) > 1 ? 's' : ''} in your honor.</p>
 			${r.guests.map(g => html`${guestTemplate(g)}`)}
 			${this.reservation.can_add_plus_one ? html`${plusOneTemplate(this.reservation.plus_one)}` : ''}
 		`;
