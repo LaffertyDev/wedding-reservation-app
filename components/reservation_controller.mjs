@@ -4,16 +4,16 @@ import {WeddingHeader} from '/rsvp/components/wedding_header.mjs';
 
 async function HandleFindInvitation(e) {
 	e.preventDefault();
-	const name_search_input = document.getElementById("name_search");
-	if (name_search_input.value == "") {
+	const passcode_search_input = document.getElementById("passcode_search");
+	if (passcode_search_input.value == "") {
 		document.getElementById("error").innerHTML = "Who are you? Enter your name.";
-		name_search_input.classList.add("is-danger");
+		passcode_search_input.classList.add("is-danger");
 		return;
 	}
 	const rsvpBackend = new RSVPBackend();
 	
 	try {
-		const reservation = await rsvpBackend.SearchForReservation(name_search_input.value);
+		const reservation = await rsvpBackend.SearchForReservation(passcode_search_input.value);
 		localStorage.setItem('reservation', JSON.stringify(reservation));
 		location.href = `/rsvp/attending.html`;
 	}
@@ -23,13 +23,13 @@ async function HandleFindInvitation(e) {
 }
 
 function HandleTextInput() {
-	const name_search_input = document.getElementById("name_search");
-	name_search_input.classList.remove("is-danger");
+	const passcode_search_input = document.getElementById("name_search");
+	passcode_search_input.classList.remove("is-danger");
 }
 
 function init() {
 	document.getElementById("form").addEventListener("submit", HandleFindInvitation);
-	document.getElementById("name_search").addEventListener('click', HandleTextInput);
+	document.getElementById("passcode_search").addEventListener('click', HandleTextInput);
 	localStorage.removeItem('reservation');
 }
 
