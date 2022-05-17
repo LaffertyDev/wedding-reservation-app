@@ -81,7 +81,7 @@ class AttendingController {
 		let plusOneTemplate = (guest) => html`
 					<div class="columns is-mobile" id="plus_one_field">
 						<div class="column">
-							<input class="input" ${guest.Attending === false ? "is-invisible" : ""}" type="text" id="plus_one_name" @change="${plusOneNameChangeHandler}" value="${guest.Name}" placeholder="+1 Name" />
+							<input class="input ${guest.Attending === false ? "is-invisible" : ""}" type="text" id="plus_one_name" @change="${plusOneNameChangeHandler}" value="${guest.Name}" placeholder="+1 Name" />
 						</div>
 						<div class="column">
 							<div class="buttons is-expanded has-addons is-right radio-buttons-as-buttons">
