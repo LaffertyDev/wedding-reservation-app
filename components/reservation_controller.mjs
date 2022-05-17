@@ -23,7 +23,7 @@ async function HandleFindInvitation(e) {
 }
 
 function HandleTextInput() {
-	const passcode_search_input = document.getElementById("name_search");
+	const passcode_search_input = document.getElementById("passcode_search");
 	passcode_search_input.classList.remove("is-danger");
 }
 
