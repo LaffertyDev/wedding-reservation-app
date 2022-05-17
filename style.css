@@ -37,6 +37,10 @@ body {
 	color:  #ACACAC;
 }
 
+.emily-back-button {
+	background-color:  #f2f2f1;
+}
+
 /* https://gist.github.com/jipiboily/cfd8494fe174eb2a7f6202220196492a */
 .radio-buttons-as-buttons input {
     display: none;
