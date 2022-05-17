@@ -4,6 +4,12 @@ import {WeddingHeader} from '/rsvp/components/wedding_header.mjs';
 
 async function HandleFindInvitation(e) {
 	e.preventDefault();
+	if (Date().getMonth() >= 6 || Date().getYear() > 2022) {
+		document.getElementById("error").innerHTML = "Sorry, the deadline for submitting your RSVP has passed. Please message Emily or Nate directly.";
+		passcode_search_input.classList.add("is-danger");
+		return;
+	}
+
 	const passcode_search_input = document.getElementById("passcode_search");
 	if (passcode_search_input.value == "") {
 		document.getElementById("error").innerHTML = "Who are you? Enter your secret passcode.";
