@@ -52,7 +52,7 @@ class DinnerController {
 
 	GetCurrentGuest() {
 		if (this.current_guest === null) {
-			this.current_guest = this.reservation.guests.find(x => x.Attending);
+			this.current_guest = this.reservation.guests.find(x => x.Attending && !x.IsChild);
 			return this.current_guest;
 		} else {
 			return this.current_guest;
@@ -66,7 +66,7 @@ class DinnerController {
 			return null;
 		} else {
 			for (var x = this.reservation.guests.indexOf(current_guest) + 1; x < this.reservation.guests.length; x++) {
-				if (this.reservation.guests[x].Attending) {
+				if (this.reservation.guests[x].Attending && !this.reservation.guests[x].IsChild) {
 					return this.reservation.guests[x];
 				}
 			}
@@ -84,10 +84,10 @@ class DinnerController {
 		var current_guest = this.GetCurrentGuest();
 		if (current_guest == this.reservation.plus_one) {
 			// previous guest is the last available guest
-			return this.reservation.guests.slice().reverse().find(x => x.Attending);
+			return this.reservation.guests.slice().reverse().find(x => x.Attending && !x.IsChild);
 		} else {
 			for (var x = this.reservation.guests.indexOf(current_guest) - 1; x >= 0; x--) {
-				if (this.reservation.guests[x].Attending) {
+				if (this.reservation.guests[x].Attending && !this.reservation.guests[x].IsChild) {
 					return this.reservation.guests[x];
 				}
 			}
