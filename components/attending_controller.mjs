@@ -111,11 +111,11 @@ class AttendingController {
 
 		if (this.reservation.guests.every(x => x.Attending === false)) {
 			document.getElementById("not_attending_info").classList.remove("is-hidden");
-			document.getElementById("plus_one_field").classList.add("is-hidden");
+			if (this.reservation.can_add_plus_one) { document.getElementById("plus_one_field").classList.add("is-hidden") };
 			document.getElementById("next").innerHTML = "Submit RSVP";
 		} else {
 			document.getElementById("not_attending_info").classList.add("is-hidden");
-			document.getElementById("plus_one_field").classList.remove("is-hidden");
+			if (this.reservation.can_add_plus_one) { document.getElementById("plus_one_field").classList.remove("is-hidden") };
 			document.getElementById("next").innerHTML = "Next: Dinner Choice";
 		}
 	}
