@@ -1,12 +1,12 @@
 import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm'
 
 class Guest {
-	constructor(name) {
+	constructor(name, isChild) {
 		this.Name = name;
 		this.Dinner = null;
 		this.Attending = null;
 		this.RestrictionsNote = null;
-		this.IsChild = false;
+		this.IsChild = isChild;
 	}
 }
 
