@@ -123,7 +123,7 @@ class DinnerController {
 
 		document.getElementById("allergy_text").value = current_guest.RestrictionsNote;
 		document.getElementById("previous").innerHTML = previous_guest == null ? "← Previous" : "← " + previous_guest.Name;
-		document.getElementById("next").innerHTML = next_guest === null ? "Next: Confirm Details" : `Next: ${next_guest.Name}`;
+		document.getElementById("next").innerHTML = next_guest === null ? "Submit RSVP" : `Next: ${next_guest.Name}`;
 		document.getElementById("error").innerHTML = this.error;
 	}
 
