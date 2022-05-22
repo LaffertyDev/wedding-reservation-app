@@ -34,7 +34,6 @@ export class RSVPBackend {
 			.select('*')
 			.eq("passcode", passcode);
 
-		console.log(reservation, error);
 		if (error) {
 			return Promise.reject("I had a database failure. Please try again later.");
 		}
