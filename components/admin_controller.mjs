@@ -4,11 +4,11 @@ import {WeddingHeader} from '/components/wedding_header.mjs';
 
 class AdminController {
 
-	async HandleDeleteData(e) {
-		e.preventDefault();
-		let rsvpBackend = new RSVPBackend();
-		await rsvpBackend.DeleteAllData();
-	}
+	// async HandleDeleteData(e) {
+	// 	e.preventDefault();
+	// 	let rsvpBackend = new RSVPBackend();
+	// 	await rsvpBackend.DeleteAllData();
+	// }
 	async HandleUploadData(e) {
 		e.preventDefault();
 		let rsvpBackend = new RSVPBackend();
@@ -17,7 +17,7 @@ class AdminController {
 
 	async init() {
 		document.getElementById("load_data").addEventListener("click", this.HandleUploadData.bind(this));
-		document.getElementById("delete_data").addEventListener("click", this.HandleDeleteData.bind(this));
+		// document.getElementById("delete_data").addEventListener("click", this.HandleDeleteData.bind(this));
 	}
 }
 

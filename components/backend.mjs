@@ -59,21 +59,21 @@ export class RSVPBackend {
 		return Promise.resolve(data);
 	}
 
-	async DeleteAllData() {
-		const { data, error } = await this.supabase
-			.from('reservation')
-		  	.delete()
-		  	.eq('can_add_plus_one', false);
+	// async DeleteAllData() {
+	// 	const { data, error } = await this.supabase
+	// 		.from('reservation')
+	// 	  	.delete()
+	// 	  	.eq('can_add_plus_one', false);
 
-		 if (error) { alert(error.message) };
+	// 	 if (error) { alert(error.message) };
 
-		const { data1, error1 } = await this.supabase
-			.from('reservation')
-		  	.delete()
-		  	.eq('can_add_plus_one', true);
+	// 	const { data1, error1 } = await this.supabase
+	// 		.from('reservation')
+	// 	  	.delete()
+	// 	  	.eq('can_add_plus_one', true);
 
-		 if (error1) { alert(error1.message) };
-	}
+	// 	 if (error1) { alert(error1.message) };
+	// }
 
 	async UploadRSVPData() {
 		const peopleToUpload = [
